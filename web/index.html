@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="scaffolded-by" content="https://github.com/dart-lang/sdk">
+  <title>json_to_freezed</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="main.dart.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+
+</head>
+
+<body>
+  <div class="title">Json To Freezed</div>
+  <div class="description">Paste your JSON in the textarea below, click convert and get your Freezed Dart classes for
+    free.
+  </div>
+
+
+  <div class="content">
+    <!-- <div class="grid"> -->
+    <aside>
+      <div class="textArea">
+        <div id="text">
+          JSON
+        </div>
+        <div id="textfield">
+          <Textarea id="mytextfield" spellCheck="false" wrap="off"></Textarea>
+        </div>
+        <input id="class-name" type="text">
+        <button id="btn">Generate</button>
+        <button id="copy">Copy</button>
+      </div>
+      <div id="check-box">
+        <label for="">Default Value</label><br>
+        <input id="String" type="checkbox"><label for="String"> String</label><br>
+        <input id="int" type="checkbox"><label for="int"> int</label><br>
+        <input id="double" type="checkbox"><label for="double"> double</label><br>
+        <input id="boolean" type="checkbox"><label for="boolean"> boolean</label>
+        <select id="boolean-choice">
+          <option value="true">true</option>
+          <option value="false">false</option>
+        </select>
+      </div>
+    </aside>
+    <Textarea id="output" spellCheck="false" readonly></Textarea>
+
+  </div>
+
+
+
+
+
+</body>
+<script>
+  var data = document.getElementById('output');
+  document.getElementById('copy').addEventListener("click", function () {
+    var value = data.value;
+    copy(value);
+    // alert('Sorry, this feature is not available yet 🙏');
+  });
+
+
+
+  function copy(txt) {
+    navigator.clipboard.writeText(txt)
+  }
+
+</script>
+
+</html>
