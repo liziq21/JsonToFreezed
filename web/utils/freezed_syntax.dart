@@ -3,14 +3,16 @@ class FreezedSyntax {
 
   FreezedSyntax({required this.className});
 
-  final defaultClassName = 'ClassName';
+  final _defaultClassName = 'ClassName';
+  final _freezedImport =
+      "import 'package:freezed_annotation/freezed_annotation.dart';";
 
   String get getClassName => className != null && className!.isNotEmpty
       ? className!
-      : defaultClassName;
+      : _defaultClassName;
 
   String startClass() =>
-      "@Freezed\nclass $getClassName with _\$$getClassName {\n";
+      "$_freezedImport\n\n@Freezed\nclass $getClassName with _\$$getClassName {\n";
   String startConstructor() => 'factory $getClassName({ \n';
   String endConstructor() => "  }) = _$getClassName;";
   String fromJsonSyntax() =>
