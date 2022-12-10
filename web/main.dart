@@ -34,7 +34,7 @@ Future<void> main() async {
   bool start() {
     String className =
         inputClassName.value != null && inputClassName.value!.isNotEmpty
-            ? camelCaseFirstLower(inputClassName.value ?? '')
+            ? camelCase(inputClassName.value ?? '')
             : '';
     final classSyntax = FreezedSyntax(className: className);
     String result = classSyntax.startClass();
