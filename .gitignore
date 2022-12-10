@@ -3,4 +3,7 @@
 .packages
 
 # Conventional directory for build output.
-build/
+build/.dart_tool
+build/packages
+build/.packages
+build/.build.manifest
