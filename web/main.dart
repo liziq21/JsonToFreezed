@@ -34,13 +34,11 @@ Future<void> main() async {
   bool start() {
     String className =
         inputClassName.value != null && inputClassName.value!.isNotEmpty
-            ? camelCase(inputClassName.value ?? '')
+            ? camelCaseFirstLower(inputClassName.value ?? '')
             : '';
     final classSyntax = FreezedSyntax(className: className);
     String result = classSyntax.startClass();
     String constructor = classSyntax.startConstructor();
-    String endConstructor =
-        "  }) = _${className != '' ? className : CLASS_NAME};";
 
     try {
       //
@@ -57,7 +55,7 @@ Future<void> main() async {
                 boolValue: choice.selectedIndex == 0,
               ) : freezedSyntax(e.key, e.value)}';
       }).toList();
-      constructor = constructor + endConstructor;
+      constructor = constructor + classSyntax.endConstructor();
       result = '$result$constructor ${classSyntax.fromJsonSyntax()} \n}';
 
       ///output

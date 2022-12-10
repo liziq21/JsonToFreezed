@@ -1,6 +1,4 @@
-import '../main.dart';
-
-class FreezedSyntax extends EnableDefault {
+class FreezedSyntax {
   final String? className;
 
   FreezedSyntax({required this.className});
