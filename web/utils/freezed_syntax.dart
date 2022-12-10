@@ -12,7 +12,7 @@ class FreezedSyntax {
       : _defaultClassName;
 
   String startClass() =>
-      "$_freezedImport\n\n@Freezed\nclass $getClassName with _\$$getClassName {\n";
+      "$_freezedImport\n@Freezed\nclass $getClassName with _\$$getClassName {\n";
   String startConstructor() => 'factory $getClassName({ \n';
   String endConstructor() => "  }) = _$getClassName;";
   String fromJsonSyntax() =>

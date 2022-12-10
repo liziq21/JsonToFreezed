@@ -2355,7 +2355,7 @@ if(j!=null&&j.length!==0){j.toString
 o=A.dt(j)}else o=""
 s=new A.bw(o)
 j=s
-r="import 'package:freezed_annotation/freezed_annotation.dart';\n\n@Freezed\nclass "+j.gv()+" with _$"+j.gv()+" {\n"
+r="import 'package:freezed_annotation/freezed_annotation.dart';\n@Freezed\nclass "+j.gv()+" with _$"+j.gv()+" {\n"
 k.a="factory "+s.gv()+"({ \n"
 try{j=l.b.value
 q=t.a.a(B.p.al(0,j==null?"":j,null))
