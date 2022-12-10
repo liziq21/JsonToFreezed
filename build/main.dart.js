@@ -2350,9 +2350,9 @@ r.toString}else r=!0}else r=!0}else r=!0
 return r},
 $S:4}
 A.cl.prototype={
-$0(){var s,r,q,p,o,n,m,l=this,k={},j=l.a.value,i=j==null
-if(!i&&j.length!==0)o=A.dt(i?"":j)
-else o=""
+$0(){var s,r,q,p,o,n,m,l=this,k={},j=l.a.value
+if(j!=null&&j.length!==0){j.toString
+o=A.dt(j)}else o=""
 s=new A.bw(o)
 j=s
 r="@Freezed\nclass "+j.gv()+" with _$"+j.gv()+" {\n"

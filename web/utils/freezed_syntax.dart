@@ -3,7 +3,7 @@ class FreezedSyntax {
 
   FreezedSyntax({required this.className});
 
-  String defaultClassName = 'ClassName';
+  final defaultClassName = 'ClassName';
 
   String get getClassName => className != null && className!.isNotEmpty
       ? className!
