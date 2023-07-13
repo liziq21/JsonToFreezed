@@ -17,6 +17,9 @@ Future<void> main() async {
   ButtonElement? btnCopy =
       document.getElementById("btn__copy") as ButtonElement?;
 
+  ButtonElement? btnClear =
+      document.getElementById("btn__clear") as ButtonElement?;
+
   CheckboxInputElement stringBTN =
       document.getElementById("string") as CheckboxInputElement;
   CheckboxInputElement intBTN =
@@ -98,6 +101,14 @@ Future<void> main() async {
     } else {
       window.alert('No outputs found!');
     }
+  });
+
+  btnClear?.addEventListener("click", (_) async {
+    print('Clear');
+    inputJson?.value = '';
+    inputClassName.value = '';
+    document.querySelector('#output')?.text = '';
+    //TODO: Clear
   });
 }
 
