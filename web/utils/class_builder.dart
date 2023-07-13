@@ -120,7 +120,8 @@ class JsonToFreezedGenerator {
         fields.add(
             '@Default($defaultValue) @JsonKey(name: \'$key\') final $valueType $fieldName;');
       } else {
-        fields.add('@JsonKey(name: \'$key\') final $valueType? $fieldName;');
+        fields.add(
+            '@JsonKey(name: \'$key\') final $valueType${valueType.toLowerCase() == 'dynamic' ? '' : '?'} $fieldName;');
       }
     });
 
