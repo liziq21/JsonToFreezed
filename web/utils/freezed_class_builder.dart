@@ -1,22 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
-class DefaultValue {
-  bool? defaultString;
-  bool? defaultInt;
-  bool? defaultDouble;
-  bool? defaultBool;
-  bool? defaultList;
-  String boolValue;
-
-  DefaultValue({
-    required this.defaultString,
-    required this.defaultInt,
-    required this.defaultDouble,
-    required this.defaultBool,
-    required this.defaultList,
-    required this.boolValue,
-  });
-}
+import 'default_value.dart';
+import 'json_serializable_class_builder.dart';
 
 const String DF_STRING = "''";
 const String DF_INT = '0';
@@ -56,7 +41,10 @@ class JsonToFreezedGenerator {
   }
 
   String _generateDartClass(
-      dynamic json, String className, DefaultValue defaultValues) {
+    dynamic json,
+    String className,
+    DefaultValue defaultValues,
+  ) {
     final fields = <String>[];
     json.forEach((key, value) {
       String valueType = '';

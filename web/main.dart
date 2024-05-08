@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'dart:html';
 
-import 'utils/class_builder.dart';
+import 'utils/default_value.dart';
+import 'utils/enity_class_builder.dart';
+import 'utils/freezed_class_builder.dart';
+import 'utils/json_serializable_class_builder.dart';
 import 'utils/string_util.dart';
 
 Future<void> main() async {
@@ -53,25 +56,40 @@ Future<void> main() async {
 
     try {
       //
-      final classGen = JsonToFreezedGenerator(className: className);
+      final jsonToFreezedGenerator =
+          JsonToFreezedGenerator(className: className);
+      final jsonSerializableGenerator =
+          JsonSerializableGenerator(className: className);
+      final entityModelGenerator = EntityModelGenerator(className: className);
+
       final jsonInput = inputJson?.value;
+
+      final defaultValues = DefaultValue(
+          defaultString: stringBTN.checked,
+          defaultBool: booleanBTN.checked,
+          defaultDouble: doubleBTN.checked,
+          defaultInt: intBTN.checked,
+          defaultList: listBTN.checked,
+          boolValue: boolOptionValue.value ?? 'false');
 
       if (jsonInput != null && jsonInput != '') {
         final dynamic decodedJson = await jsonDecode(jsonInput);
-        classGen.generateFreezedDartDataClass(
-          decodedJson: decodedJson,
-          defaultValues: DefaultValue(
-              defaultString: stringBTN.checked,
-              defaultBool: booleanBTN.checked,
-              defaultDouble: doubleBTN.checked,
-              defaultInt: intBTN.checked,
-              defaultList: listBTN.checked,
-              boolValue: boolOptionValue.value ?? 'false'),
-        );
+        jsonToFreezedGenerator.generateFreezedDartDataClass(
+            decodedJson: decodedJson, defaultValues: defaultValues);
+
+        final serialized =
+            jsonSerializableGenerator.generateJsonSerializableDataClass(
+                decodedJson: decodedJson, defaultValues: defaultValues);
+
+        final entity = entityModelGenerator.generateEntityModelClass(
+            decodedJson: decodedJson, defaultValues: defaultValues);
 
         ///output
-        document.querySelector('#output')?.text =
-            classGen.allClasses.join('\n\n');
+        document.querySelector('#output-freezed')?.text =
+            jsonToFreezedGenerator.allClasses.join('\n\n');
+
+        document.querySelector('#output-entity')?.text = entity;
+        document.querySelector('#output-model')?.text = serialized;
       } else {
         window.alert('Please input Json in the box left to Generate.');
       }
