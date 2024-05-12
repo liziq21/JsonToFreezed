@@ -149,7 +149,7 @@ class JsonSerializableGenerator {
 
       factory $className.fromJson(Map<String, dynamic> json) => _\$${className}FromJson(json);
 
-      factory $className.toJson() => _\$${className}ToJson(json);
+      Map<String, dynamic> toJson() => _\$${className}ToJson(this);
     }
     ''';
 

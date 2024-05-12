@@ -2600,7 +2600,7 @@ s=B.a.A(s,"\n\n")
 return s}catch(q){throw q}},
 V(a,b,c){var s,r=t.s,q=A.y([],r),p=A.y([],r)
 J.cH(a,new A.bQ(this,c,q,p))
-s="    @JsonSerializable()\n    class "+b+" {\n      "+b+"({\n        "+B.a.A(p,"\n        ")+"\n      });\n\n      "+B.a.A(q,"\n      ")+"\n\n      factory "+b+".fromJson(Map<String, dynamic> json) => _$"+b+"FromJson(json);\n\n      factory "+b+".toJson() => _$"+b+"ToJson(json);\n    }\n    "
+s="    @JsonSerializable()\n    class "+b+" {\n      "+b+"({\n        "+B.a.A(p,"\n        ")+"\n      });\n\n      "+B.a.A(q,"\n      ")+"\n\n      factory "+b+".fromJson(Map<String, dynamic> json) => _$"+b+"FromJson(json);\n\n      Map<String, dynamic> toJson() => _$"+b+"ToJson(this);\n    }\n    "
 B.a.j(this.a,s)
 return s}}
 A.bQ.prototype={
