@@ -2,6 +2,7 @@
 
 import 'default_value.dart';
 import 'json_serializable_class_builder.dart';
+import 'string_util.dart';
 
 const String DF_STRING = "''";
 const String DF_INT = '0';
@@ -102,7 +103,7 @@ class JsonToFreezedGenerator {
         valueType = 'dynamic';
       }
 
-      final fieldName = _convertToValidDartIdentifier(key);
+      final fieldName = camelCaseFirstLower(_convertToValidDartIdentifier(key));
 
       if (defaultValue != null) {
         fields.add(

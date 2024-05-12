@@ -125,7 +125,7 @@ class EntityModelGenerator {
     class $className with _\$$className {
       factory $className({
         ${fields.join('\n        ')}
-      }) = _\$$className;
+      }) = _$className;
     }
     ''';
 

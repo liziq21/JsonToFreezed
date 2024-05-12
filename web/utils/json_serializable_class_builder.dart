@@ -139,18 +139,17 @@ class JsonSerializableGenerator {
     });
 
     final classString = '''
-    @JsonSerializable
+    @JsonSerializable()
     class $className {
-      ${fields.join('\n        ')}
       $className({
         ${constructorfields.join('\n        ')}
       });
 
-      factory $className.fromJson(Map<String, dynamic> json) =>
-      _${className}FromJson(json);
+      ${fields.join('\n      ')}
 
-      factory $className.toJson() =>
-      _${className}ToJson(json);
+      factory $className.fromJson(Map<String, dynamic> json) => _\$${className}FromJson(json);
+
+      factory $className.toJson() => _\$${className}ToJson(json);
     }
     ''';
 

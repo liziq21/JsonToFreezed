@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: constant_identifier_names
 
+import 'string_util.dart';
+
 class DataMember {
   DataMember({
     required this.defaultValue,
@@ -13,9 +15,10 @@ class DataMember {
   final String type;
   final String jsonkey;
 
-  String get dartVariable => _convertToValidDartIdentifier(jsonkey);
+  String get dartVariable =>
+      camelCaseFirstLower(_convertToValidDartIdentifier(jsonkey));
 
-  String get getEnitityField =>
+  String get getEntityField =>
       'final $type${type.toLowerCase() == 'dynamic' ? '' : '?'} $dartVariable;';
 
   String get getEntityConstructorField =>
