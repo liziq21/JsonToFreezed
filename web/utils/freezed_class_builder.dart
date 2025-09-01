@@ -1,7 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
 import 'default_value.dart';
-import 'json_serializable_class_builder.dart';
 import 'string_util.dart';
 
 const String DF_STRING = "''";
@@ -22,9 +21,10 @@ class JsonToFreezedGenerator {
     _className = className;
   }
 
-  void generateFreezedDartDataClass(
-      {required dynamic decodedJson,
-      required DefaultValue defaultValues}) async {
+  void generateFreezedDartDataClass({
+    required dynamic decodedJson,
+    required DefaultValue defaultValues,
+  }) async {
     try {
       _allClassess.clear();
 
@@ -107,18 +107,21 @@ class JsonToFreezedGenerator {
 
       if (defaultValue != null) {
         fields.add(
-            '@Default($defaultValue) @JsonKey(name: \'$key\') final $valueType $fieldName;');
+          '@Default($defaultValue) @JsonKey(name: \'$key\') $valueType $fieldName',
+        );
       } else {
         fields.add(
-            '@JsonKey(name: \'$key\') final $valueType${valueType.toLowerCase() == 'dynamic' ? '' : '?'} $fieldName;');
+          '@JsonKey(name: \'$key\') $valueType${valueType.toLowerCase() == 'dynamic' ? '' : '?'} $fieldName',
+        );
       }
     });
 
-    final classString = '''
+    final classString =
+        '''
     @freezed
     class $className with _\$$className {
       factory $className({
-        ${fields.join('\n        ')}
+        ${fields.join(',\n        ')}
       }) = _\$$className;
     }
     ''';

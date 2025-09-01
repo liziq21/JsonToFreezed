@@ -3,6 +3,7 @@
 
 import 'data_member.dart';
 import 'default_value.dart';
+import 'string_util.dart';
 
 /*
   @JsonSerializable()
@@ -44,7 +45,10 @@ class JsonSerializableGenerator {
       _allClassess.clear();
 
       _generateDartClass(
-          decodedJson, className ?? kDefaultClassName, defaultValues);
+        decodedJson,
+        className ?? kDefaultClassName,
+        defaultValues,
+      );
       _moveClass();
 
       return _allClassess.join('\n\n');
@@ -60,7 +64,10 @@ class JsonSerializableGenerator {
   }
 
   String _generateDartClass(
-      dynamic json, String className, DefaultValue defaultValues) {
+    dynamic json,
+    String className,
+    DefaultValue defaultValues,
+  ) {
     final fields = <String>[];
     final constructorfields = <String>[];
     json.forEach((key, value) {
@@ -110,7 +117,7 @@ class JsonSerializableGenerator {
               break;
 
             default:
-              String nestedClassName = _capitalize(key);
+              String nestedClassName = capitalize(key);
               memberType = 'List<$nestedClassName>';
 
               _generateDartClass(child, nestedClassName, defaultValues);
@@ -120,7 +127,7 @@ class JsonSerializableGenerator {
           memberType = 'List<dynamic>';
         }
       } else if (value is Map) {
-        String nestedClassName = _capitalize(key);
+        String nestedClassName = capitalize(key);
         memberType = nestedClassName;
         // defaultValue = '$nestedClassName()';//MAP no default value
         _generateDartClass(value, nestedClassName, defaultValues);
@@ -138,7 +145,8 @@ class JsonSerializableGenerator {
       constructorfields.add(member.getConstructorField);
     });
 
-    final classString = '''
+    final classString =
+        '''
     @JsonSerializable()
     class $className {
       $className({
@@ -157,8 +165,4 @@ class JsonSerializableGenerator {
 
     return classString;
   }
-}
-
-String _capitalize(String input) {
-  return input[0].toUpperCase() + input.substring(1);
 }

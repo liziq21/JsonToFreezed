@@ -1,5 +1,4 @@
 .dart_tool/package_config.json
-.packages
 index.html
 main.dart.js
 packages/$sdk/dev_compiler/amd/require.js

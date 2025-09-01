@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
 :root {
   --backgroundColor: grey;
@@ -28,7 +28,7 @@ button {
 * {
   margin: 0;
   padding: 0;
-  font-family: "Hanken Grotesk", sans-serif;
+  font-family: 'Hanken Grotesk', sans-serif;
   box-sizing: border-box;
 }
 
@@ -99,7 +99,7 @@ body {
 .content__json-input textarea {
   width: 100%;
   aspect-ratio: 3/4;
-  font-family: "Fira Code";
+  font-family: 'Fira Code';
   resize: none;
   border-radius: 5px;
   border: 2px solid var(--main-color);
@@ -176,7 +176,7 @@ body {
 .content__right-container Textarea {
   height: 100%;
   width: 100%;
-  font-family: "Fira Code";
+  font-family: 'Fira Code';
   font-size: 15px;
   /* background-color: wheat; */
   line-height: 1.5;
