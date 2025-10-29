@@ -1,263 +1,62 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="scaffolded-by" content="https://github.com/dart-lang/sdk" />
-    <title>Dart DTO</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script defer src="main.dart.js"></script>
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="scaffolded-by" content="https://github.com/google/stagehand">
+  <title>Json to built_value generator</title>
+  <link rel="stylesheet" href="styles.css">
+  <!--link rel="icon" href="favicon.ico">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  
+  <script defer src="main.dart.js"></script>
+  <style>
+    .inline-div {
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      margin-top: 10px;
+    }
+    
+    .inline-txtarea {
+      width: 48%;
+      height: 90vh;
+      border: 1px solid #eeeeee;
+      /* color: #ffffff; */
+      font-size: 11pt;
+      margin: 0 auto;
+      /* background-color: #37373F; */
+    }
+  </style>
+</head>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    /> -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100;200;300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      .char-line-counter {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 5px;
-        color: #999;
-      }
-      .line-number {
-        display: inline-block;
-        width: 30px;
-        text-align: right;
-        margin-right: 5px;
-      }
-    </style>
-  </head>
-
-  <body>
-    <div class="main">
-      <div class="head">
-        <h1 class="title">DTO Class Helper</h1>
-        <p class="subtitle">
-          Paste your JSON in the textarea below, click generate and get your
-          Objective Dart classes.
-        </p>
-      </div>
-
-      <div class="content__body-container">
-        <div class="content__left-container">
-          <div id="text">JSON</div>
-
-          <div class="content__json-input">
-            <textarea id="input__json" spellcheck="false" wrap="off"></textarea>
-          </div>
-
-          <input
-            class="content__class-name"
-            id="input__classname"
-            type="text"
-            placeholder="Input class name"
-          />
-
-          <div class="content__buttons-group">
-            <button class="app__btn" id="btn__clear" type="button">
-              Clear
-            </button>
-            <button class="app__btn" id="btn__generate" type="button">
-              Generate
-            </button>
-            <!-- <button class="app__btn" id="btn__copy" type="button">Copy</button> -->
-          </div>
-
-          <div class="content__options-group">
-            <label>Default Value</label><br />
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="string"
-              />
-              <label class="form-check-label" for="flexCheckDefault">
-                String
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="int"
-              />
-              <label class="form-check-label" for="flexCheckDefault">
-                int
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="double"
-              />
-              <label class="form-check-label" for="flexCheckChecked">
-                double
-              </label>
-            </div>
-
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="list"
-              />
-              <label class="form-check-label" for="flexCheckChecked">
-                list
-              </label>
-            </div>
-
-            <div class="option__box-boolen">
-              <input
-                class="form-check-input red"
-                type="checkbox"
-                value=""
-                id="boolean"
-                name="boolean"
-              />
-              <label for="boolean">boolean</label>
-              <select
-                for="flexCheckChecked"
-                class="form-select form-select-sm"
-                aria-label=".form-select-sm example"
-                id="option__box-boolen-value"
-              >
-                <option selected="1" value="true">True</option>
-                <option value="false">False</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="content__right-container">
-          <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link active"
-                id="home-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#home-tab-pane"
-                type="button"
-                role="tab"
-                aria-controls="home-tab-pane"
-                aria-selected="true"
-              >
-                Freezed (Serializable)
-              </button>
-            </li>
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link"
-                id="entity-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#entity-tab-pane"
-                type="button"
-                role="tab"
-                aria-controls="entity-tab-pane"
-                aria-selected="false"
-              >
-                Entity
-              </button>
-            </li>
-
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link"
-                id="model-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#model-tab-pane"
-                type="button"
-                role="tab"
-                aria-controls="model-tab-pane"
-                aria-selected="false"
-              >
-                Data Model (Serializable)
-              </button>
-            </li>
-
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link"
-                id="mapper-tab"
-                data-bs-toggle="tab"
-                data-bs-target="#mapper-tab-pane"
-                type="button"
-                role="tab"
-                aria-controls="mapper-tab-pane"
-                aria-selected="false"
-                disabled="true"
-              >
-                Mapper (coming soon!)
-              </button>
-            </li>
-          </ul>
-
-          <div class="tab-content" id="myTabContent">
-            <!-- freezed -->
-            <div
-              class="tab-pane fade show active"
-              id="home-tab-pane"
-              role="tabpanel"
-              aria-labelledby="home-tab"
-              tabindex="0"
-            >
-              <textarea id="output-freezed" spellcheck="false" readonly>
-              </textarea>
-            </div>
-
-            <!-- entity -->
-            <div
-              class="tab-pane fade"
-              id="entity-tab-pane"
-              role="tabpanel"
-              aria-labelledby="entity-tab"
-              tabindex="1"
-            >
-              <textarea id="output-entity" spellcheck="false" readonly>
-              </textarea>
-            </div>
-
-            <!-- model -->
-            <div
-              class="tab-pane fade"
-              id="model-tab-pane"
-              role="tabpanel"
-              aria-labelledby="model-tab"
-              tabindex="0"
-            >
-              <textarea id="output-model" spellcheck="false" readonly>
-              </textarea>
-            </div>
-          </div>
-        </div>
-      </div>
+<body>
+  
+  <!-- <div style="margin-left: 24px;">
+        <h2 style="display: inline-block;">Json to Dart built_value class converter</h2>
+        Root class name:
+        <input id="root_class_name" type="text" value="RootDto"></input>
+        <input id="convert" type="submit" value="Convert"></input>
+    </div> -->
+  <div class="mdl-layout__header-row header">
+    <span class="mdl-layout-title">Json to Dart built_value class converter </span>
+    <div style="margin-left: 10px;">
+      <input id="root_class_name" type="text" value="RootDto"></input>
+      <input id="convert" type="submit" value="Convert"></input>
     </div>
-  </body>
+  </div>
+  <div id="texts" class="inline-div">
+    <center>
+      <textarea id="input_text" class="inline-txtarea "></textarea>
+      <textarea id="output_text" class="inline-txtarea "></textarea>
+    </center>
+  </div>
+  
+</body>
 
-  <!-- <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-    crossorigin="anonymous"
-  ></script> -->
 </html>
